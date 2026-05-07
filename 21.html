@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> dentoraSMILE - Gabinet stomatologiczny </title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --primary:#00a6a6;
+    --secondary:#0f4c81;
+    --light:#f5fbff;
+    --dark:#111827;
+    --gray:#6b7280;
+    --white:#ffffff;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.7;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 20px rgba(0,0,0,0.08);
+    z-index:1000;
+}
+
+nav{
+    max-width:1300px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 24px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--secondary);
+}
+
+.menu{
+    display:flex;
+    gap:12px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:var(--dark);
+    padding:11px 18px;
+    border-radius:12px;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.menu a:hover{
+    background:var(--primary);
+    color:white;
+}
+
+.menu a.active{
+    background:black;
+    color:white;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(135deg,
+    rgba(15,76,129,0.88),
+    rgba(0,166,166,0.78)),
+    url("https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1800&auto=format&fit=crop")
+    center/cover;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    padding:120px 20px 80px;
+}
+
+/* animated circles */
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50%;
+    top:-150px;
+    right:-150px;
+    filter:blur(20px);
+    animation:float1 8s ease-in-out infinite;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:rgba(255,255,255,0.06);
+    border-radius:50%;
+    bottom:-120px;
+    left:-120px;
+    filter:blur(15px);
+    animation:float2 10s ease-in-out infinite;
+}
+
+@keyframes float1{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(30px);}
+    100%{transform:translateY(0px);}
+}
+
+@keyframes float2{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-25px);}
+    100%{transform:translateY(0px);}
+}
+
+.hero-content{
+    max-width:900px;
+    position:relative;
+    z-index:2;
+
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(12px);
+
+    padding:50px;
+    border-radius:30px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.2);
+}
+
+.hero h1{
+    font-size:68px;
+    margin-bottom:25px;
+    animation:fadeUp 1s ease;
+}
+
+.hero p{
+    font-size:24px;
+    margin-bottom:35px;
+    animation:fadeUp 1.4s ease;
+}
+
+.hero-btn{
+    display:inline-block;
+    padding:16px 34px;
+    background:white;
+    color:var(--secondary);
+    text-decoration:none;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:bold;
+    transition:0.3s;
+    animation:fadeUp 1.8s ease;
+}
+
+.hero-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:120px 25px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+h2{
+    font-size:48px;
+    margin-bottom:25px;
+    color:var(--secondary);
+}
+
+.section-text{
+    max-width:900px;
+    color:var(--gray);
+    margin-bottom:50px;
+    font-size:18px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about-image img{
+    width:100%;
+    border-radius:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.about-box{
+    background:white;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+    margin-top:60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:20px;
+    transition:0.4s;
+    box-shadow:0 5px 18px rgba(0,0,0,0.1);
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+}
+
+/* ================= SERVICES ================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    border-top:6px solid var(--primary);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:var(--secondary);
+}
+
+/* ================= PRICING ================= */
+
+.pricing{
+    display:grid;
+    gap:18px;
+}
+
+.price-item{
+    background:white;
+    padding:22px 28px;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.price-item strong{
+    color:var(--primary);
+    font-size:20px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.contact-box{
+    background:white;
+    padding:40px;
+    border-radius:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.contact-box p{
+    margin-bottom:18px;
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    min-height:400px;
+    border:none;
+    border-radius:24px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+/* ================= MOBILE ================= */
+
+.mobile-btn{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+}
+
+@media(max-width:900px){
+
+    .mobile-btn{
+        display:block;
+    }
+
+    .menu{
+        position:absolute;
+        top:85px;
+        left:0;
+        width:100%;
+        background:white;
+        flex-direction:column;
+        padding:20px;
+        display:none;
+        border-top:1px solid #eee;
+    }
+
+    .menu.show{
+        display:flex;
+    }
+
+    .hero h1{
+        font-size:44px;
+    }
+
+    .hero p{
+        font-size:19px;
+    }
+
+    h2{
+        font-size:36px;
+    }
+
+    .about-grid,
+    .contact-wrapper{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ================= MENU ================= -->
+
+<header>
+    <nav>
+
+        <div class="logo">
+            dentoraSMILE
+        </div>
+
+        <div class="mobile-btn" id="mobileBtn">
+            ☰
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="#omnie" class="nav-link">O nas</a>
+            <a href="#uslugi" class="nav-link">Zakres usług</a>
+            <a href="#cennik" class="nav-link">Cennik</a>
+            <a href="#kontakt" class="nav-link">Kontakt</a>
+        </div>
+
+    </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Nowoczesna stomatologia<br>w komfortowej atmosferze</h1>
+
+        <p>
+            Łączymy doświadczenie, nowoczesny sprzęt oraz indywidualne
+            podejście do każdego pacjenta. Naszym celem jest zdrowy,
+            piękny i naturalny uśmiech.
+        </p>
+
+        <a href="#kontakt" class="hero-btn">
+            Umów wizytę
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= O NAS ================= -->
+
+<section id="omnie">
+
+    <div class="container">
+
+        <h2>O nas</h2>
+
+        <p class="section-text">
+            Nasz gabinet stomatologiczny działa od wielu lat, zapewniając
+            kompleksową opiekę dentystyczną dla dzieci i dorosłych.
+            Korzystamy z nowoczesnych technologii i wysokiej jakości
+            materiałów, aby leczenie było skuteczne, komfortowe i trwałe.
+            Dbamy o spokojną atmosferę i indywidualne podejście do każdego pacjenta.
+        </p>
+
+        <div class="about-grid">
+
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop">
+            </div>
+
+            <div class="about-box">
+
+                <h3 style="margin-bottom:20px;">Dlaczego warto nam zaufać?</h3>
+
+                <p>
+                    ✔ Wieloletnie doświadczenie i nowoczesny sprzęt.
+                </p>
+
+                <p>
+                    ✔ Bezbolesne leczenie oraz komfortowe warunki.
+                </p>
+
+                <p>
+                    ✔ Indywidualne podejście do każdego pacjenta.
+                </p>
+
+                <p>
+                    ✔ Profesjonalna diagnostyka i estetyczne efekty leczenia.
+                </p>
+
+                <p>
+                    ✔ Elastyczne godziny wizyt oraz szybkie terminy.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- GALERIA -->
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1200&auto=format&fit=crop">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= USŁUGI ================= -->
+
+<section id="uslugi">
+
+    <div class="container">
+
+        <h2>Zakres usług</h2>
+
+        <p class="section-text">
+            Oferujemy szeroki zakres usług stomatologicznych —
+            od podstawowej profilaktyki po zaawansowane zabiegi estetyczne.
+            Dzięki nowoczesnym metodom leczenia możemy zapewnić wysoki komfort
+            oraz skuteczne rezultaty.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Stomatologia estetyczna</h3>
+                <p>
+                    Wybielanie zębów, bonding, licówki porcelanowe
+                    oraz poprawa estetyki uśmiechu.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Leczenie kanałowe</h3>
+                <p>
+                    Precyzyjne leczenie endodontyczne wykonywane
+                    pod mikroskopem.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Ortodoncja</h3>
+                <p>
+                    Aparaty ortodontyczne stałe i ruchome,
+                    korekta wad zgryzu.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Implantologia</h3>
+                <p>
+                    Uzupełnianie braków zębowych przy użyciu
+                    nowoczesnych implantów.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Profilaktyka</h3>
+                <p>
+                    Skaling, piaskowanie, fluoryzacja
+                    i profesjonalna higienizacja.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Stomatologia dziecięca</h3>
+                <p>
+                    Przyjazne podejście do najmłodszych pacjentów
+                    i bezstresowe wizyty.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CENNIK ================= -->
+
+<section id="cennik">
+
+    <div class="container">
+
+        <h2>Cennik</h2>
+
+        <p class="section-text">
+            Poniższe ceny mają charakter orientacyjny.
+            Dokładny koszt leczenia ustalany jest indywidualnie
+            podczas konsultacji w gabinecie.
+        </p>
+
+        <div class="pricing">
+
+            <div class="price-item">
+                <span>Przegląd stomatologiczny</span>
+                <strong>150 zł</strong>
+            </div>
+
+            <div class="price-item">
+                <span>Wybielanie zębów</span>
+                <strong>900 zł</strong>
+            </div>
+
+            <div class="price-item">
+                <span>Leczenie kanałowe</span>
+                <strong>od 600 zł</strong>
+            </div>
+
+            <div class="price-item">
+                <span>Usuwanie kamienia</span>
+                <strong>250 zł</strong>
+            </div>
+
+            <div class="price-item">
+                <span>Licówki porcelanowe</span>
+                <strong>od 1400 zł</strong>
+            </div>
+
+            <div class="price-item">
+                <span>Implant zębowy</span>
+                <strong>od 3500 zł</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= KONTAKT ================= -->
+
+<section id="kontakt">
+
+    <div class="container">
+
+        <h2>Kontakt</h2>
+
+        <p class="section-text">
+            Skontaktuj się z nami i umów wizytę.
+            Chętnie odpowiemy na wszystkie pytania
+            oraz pomożemy dobrać odpowiednie leczenie.
+        </p>
+
+        <div class="contact-wrapper">
+
+            <div class="contact-box">
+
+                <p><strong>📞 Telefon:</strong> +48 123 456 789</p>
+
+                <p><strong>✉ Email:</strong> kontakt@dentora.pl</p>
+
+                <p><strong>📍 Adres:</strong> ul. Zdrowa XX, Warszawa</p>
+
+                <p><strong>🕒 Godziny otwarcia:</strong></p>
+
+                <p>
+                    Poniedziałek - Piątek: 8:00 - 20:00
+                </p>
+
+                <p>
+                    Sobota: 9:00 - 14:00
+                </p>
+
+            </div>
+
+            <!-- MAPA -->
+
+            <iframe
+                src="https://www.google.com/maps?q=Warszawa&output=embed">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    Projekt demonstracyjny <br>
+    Strona stworzona wyłącznie w celach prezentacyjnych
+</footer>
+
+<script>
+
+/* ================= MOBILE MENU ================= */
+
+const mobileBtn = document.getElementById("mobileBtn");
+const menu = document.getElementById("menu");
+
+mobileBtn.addEventListener("click", () => {
+    menu.classList.toggle("show");
+});
+
+/* ================= ACTIVE MENU FIX ================= */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 220;
+        const sectionHeight = section.offsetHeight;
+
+        if(window.scrollY >= sectionTop &&
+           window.scrollY < sectionTop + sectionHeight){
+
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if(currentSection &&
+           link.getAttribute("href") === "#" + currentSection){
+
+            link.classList.add("active");
+        }
+    });
+});
+
+/* ================= CLOSE MOBILE MENU ================= */
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+        menu.classList.remove("show");
+    });
+
+});
+
+</script>
+
+</body>
+</html>
